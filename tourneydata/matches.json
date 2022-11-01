@@ -8,7 +8,9 @@
             "referee": 15229801,
             "protects": [],
             "bans": [],
-            "firstpick": "blue"
+            "firstpick": "blue",
+            "stage": "Play-Ins",
+            "warmups": 2
         },
       "match": {
         "id": 104476997,
@@ -2816,7 +2818,10 @@
         },
         "protects": [],
             "bans": [],
-        "referee": 15229801
+        "referee": 15229801,
+        "firstpick": "blue",
+        "stage": "Play-Ins",
+        "warmups": 2
     },
     "match": {
       "id": 104477704,
@@ -5088,7 +5093,10 @@
         },
         "protects": [],
             "bans": [],
-        "referee": 15229801
+        "referee": 15229801,
+        "firstpick": "blue",
+        "stage": "Play-Ins",
+        "warmups": 2
     },
     "match": {
       "id": 104478995,

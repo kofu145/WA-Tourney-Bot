@@ -19,7 +19,7 @@ class TDataManager():
         with open(localdata, "r") as f:
             self.localdata = json.load(f)
 
-    def add_match(self, match_id, local_id, red_id, blue_id, referee_id, protects, bans):
+    def add_match(self, match_id, local_id, red_id, blue_id, referee_id, protects, bans, warmups):
         if local_id in self.matches:
             raise Exception("match id already exists within played matches!")
 
@@ -32,10 +32,17 @@ class TDataManager():
             },
             "protects": protects,
             "bans": bans,
-            "referee": referee_id
+            "referee": referee_id,
+            "warmups": warmups
+            # warmups
         }
 
         self.matches[local_id] = adding_match
+
+        # this is here thanks to the fact that match result names are saved as the same
+        self.matches[local_id]['match']['name'] = f"WSB: ({self.get_team(red_id)['name']}) vs ({self.get_team(blue_id)['name']})"
+
+        self.matches = dict(sorted(self.matches.items()))
         self.update()
 
     def get_match(self, match_id, is_local_id=True):
@@ -45,8 +52,10 @@ class TDataManager():
         else:
             return self.osu_handler.get_match(match_id)
 
+
     def parse_match_data(self, match, ignore=2):
         # ignore param is for warmups
+        ignore = match['suijidata']['warmups']
         maps = []
         for i in match["events"]:
             payload = {
